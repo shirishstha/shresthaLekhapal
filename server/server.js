@@ -16,8 +16,9 @@ const app = express();
 connectDB();
 
 
-//resolving cors origin policy
+//resolving cors origin policy and parsing json request
 app.use(cors());
+app.use(express.json());
 
 //routes
 app.use('/api/shresthaLekhapal/landing',(req,res)=> res.send('Your backend loaded success enjoy'));
