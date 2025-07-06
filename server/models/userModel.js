@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema({
     contact:{
         type: Number,
         required : true,
+    },
+    role: {
+        type: String,
+        default : 'accountant',
+        enum : ['accountant','owner']
     }
 },{timestamps:true})
 

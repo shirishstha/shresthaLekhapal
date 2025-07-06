@@ -2,7 +2,7 @@
 const express = require('express');
 
 //local modules
-const {loginController} = require('../controllers/authController');
+const {loginController,registerController} = require('../controllers/authController');
 
 //routes initialization
  const authRouter = express.Router();
@@ -10,5 +10,6 @@ const {loginController} = require('../controllers/authController');
 
 //routes
 authRouter.post('/login',loginController);
+authRouter.post('/register',registerController);
 
 module.exports = authRouter;
