@@ -1,7 +1,7 @@
 //local modules 
 const userModel = require('../models/userModel');
 const generateOTP = require('../helpers/otp');
-const {hashPassword} = require('../helpers/authHelper');
+const {hashPassword, comparePassword} = require('../helpers/authHelper');
 
 
 const registerController = async (req, res) =>{
@@ -86,12 +86,48 @@ const registerController = async (req, res) =>{
         })
     }
 }
-const loginController = (req, res) => {
+const loginController = async (req, res) => {
     try {
-        const {email} = req.body;
-        generateOTP(email);
+        //checking empty data
+        const {email,password} = req.body;
+        if(!email || !password){
+            res.status(400).send({
+                success: false ,
+                message: 'Email or password is empty'
+            })
+            return
+        }
+
+        //checking user avaibility
+        const user = await userModel.findOne({email});
+        if(!user){
+            res.status(401).send({
+                success: false,
+                message: 'User doesnot exist '
+            })
+            return
+        }
+
+        //checking the password of available user 
+        const match = await comparePassword(password,user.password);
+        if(!match){
+            console.log(match);
+            res.status(401).send({
+                success: false,
+                message: 'Credintials doesnot matched'
+            })
+            return
+        }
+
+        
         res.send({
-            message:'Otp sent successfully'
+            message:'Login successfull',
+            user:{
+                email: user.email,
+                name: user.name,
+                contact: user.contact,
+                role: user.role
+            }
         })
         
     } catch (error) {

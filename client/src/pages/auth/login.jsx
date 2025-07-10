@@ -6,11 +6,17 @@ import { Label } from "@/components/ui/label"
 import toast from "react-hot-toast"
 import axios from "axios"
 import { Eye, EyeOff } from "lucide-react"
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { loginUser } from "@/features/slice"
+import LoadingPage from "@/components/loadingPage"
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPass, setShowPass] = useState(false);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -24,6 +30,10 @@ export const LoginPage = () => {
             const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/auth/login`, { email, password });
             if (res.data.success) {
                 toast.success(res.data.message);
+                dispatch(loginUser(res.data.user));
+                navigate('/private/homepage');
+            }else{
+                <LoadingPage/>
             }
 
         } catch (error) {

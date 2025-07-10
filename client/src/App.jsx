@@ -7,20 +7,21 @@ import { HomePage } from './pages/private/homePage'
 
 function App() {
   return (
-   <Routes>
-    <Route path='/' element={<LandingPage/> }/>
-    <Route path='/login' element={<LoginPage/> }/>
+    <Routes>
+      <Route path='/' element={<LandingPage />} />
+      <Route path='/login' element={<LoginPage />} />
 
-    {/* private routes */}
-    <Route path='/private/selectcmp' element={<SelectCmp/> }/>
-    <Route path='/private/homepage' element={<HomePage/> }/>
+      {/* private routes */}
+      <Route path='/private' element>
+        <Route path='/private/selectcmp' element={<SelectCmp />} />
+        <Route path='/private/homepage' element={<HomePage />} />
+      </Route>
 
 
 
-    
-   </Routes>
-     
- 
+    </Routes>
+
+
 
 
   )
