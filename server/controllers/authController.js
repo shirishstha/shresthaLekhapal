@@ -1,7 +1,7 @@
 //local modules 
 const userModel = require('../models/userModel');
-const generateOTP = require('../helpers/otp');
 const {hashPassword, comparePassword} = require('../helpers/authHelper');
+const jwt = require('jsonwebtoken');
 
 
 const registerController = async (req, res) =>{
@@ -119,7 +119,15 @@ const loginController = async (req, res) => {
             return
         }
 
-        
+        //initializing jwt token for secure login
+        const userDetail = {
+            _id: user._id,
+            email: user.email
+        }
+        const token = jwt.sign(userDetail,process.env.JWT_SECRET,{expiresIn:'1h'});
+
+
+        //sending the response after all successfull validations 
         res.send({
             message:'Login successfull',
             user:{
@@ -127,7 +135,8 @@ const loginController = async (req, res) => {
                 name: user.name,
                 contact: user.contact,
                 role: user.role
-            }
+            },
+            token
         })
         
     } catch (error) {
