@@ -9,7 +9,6 @@ import { Eye, EyeOff } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { loginUser } from "@/features/slice"
-import LoadingPage from "@/components/loadingPage"
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -30,14 +29,16 @@ export const LoginPage = () => {
             const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/auth/login`, { email, password });
             if (res.data.success) {
                 toast.success(res.data.message);
-                dispatch(loginUser(res.data.user));
+                dispatch(loginUser({user:res.data.user,token:res.data.token}));
+                localStorage.setItem('userData',JSON.stringify({
+                    token: res.data.token,
+                    user: res.data.user
+                }))
                 navigate('/private/homepage');
-            }else{
-                <LoadingPage/>
             }
 
         } catch (error) {
-            toast.error("Something went wrong");
+            toast.error( error?.response?.data?.message);
             console.log("Error handeling login operation", error);
         }
     }

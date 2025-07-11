@@ -1,26 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
 const initialState = {
-      user:{
-        token:"",
-        role:"",
-        name:"",
-        contact:""
-      }
+    user: userData.user || {
+        email: "",
+        role: "",
+        name: "",
+        contact: ""
+    },
+    token: userData.token || ""
 }
 
 export const lekapalSlice = createSlice({
     name: 'lekhapalSlice',
     initialState,
-    reducers:{
+    reducers: {
         loginUser: (state, action) => {
-            userLog = {
-                token: action.payload.token,
-                role: action.payload.role,
-                name: action.payload.name,
-                contact: action.payload.contact,
+            const userLog = {
+                role: action.payload.user.role,
+                name: action.payload.user.name,
+                contact: action.payload.user.contact,
+                email: action.payload.user.email
             }
+
             state.user = userLog;
+            state.token = action.payload.token;
 
         }
 
@@ -28,4 +33,4 @@ export const lekapalSlice = createSlice({
 })
 
 export default lekapalSlice.reducer
-export const {loginUser} = lekapalSlice.actions
+export const { loginUser } = lekapalSlice.actions

@@ -4,11 +4,16 @@ import { useNavigate } from 'react-router-dom'
 
 const LoadingPage = () => {
   const navigate = useNavigate();
-  useEffect = (() => {
-    toast('Redirecting to login page');
-    navigate('/login');
 
-  });
+  useEffect(() => {
+    toast.error('Redirecting to login page as unauthorized access detected');
+
+    setTimeout(() => {
+      navigate('/login');
+    }, 1500)
+
+
+  }, []);
 
 
 
