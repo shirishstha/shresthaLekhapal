@@ -111,7 +111,6 @@ const loginController = async (req, res) => {
         //checking the password of available user 
         const match = await comparePassword(password,user.password);
         if(!match){
-            console.log(match);
             res.status(401).send({
                 success: false,
                 message: 'Credintials doesnot matched'
@@ -129,6 +128,7 @@ const loginController = async (req, res) => {
 
         //sending the response after all successfull validations 
         res.send({
+            success: true,
             message:'Login successfull',
             user:{
                 email: user.email,
