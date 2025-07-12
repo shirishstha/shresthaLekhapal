@@ -29,11 +29,25 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useDispatch } from "react-redux"
+import toast from "react-hot-toast"
+import { logoutUser } from "@/features/slice"
+import { useNavigate } from "react-router-dom"
 
 export function NavUser({
   user
 }) {
   const { isMobile } = useSidebar()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('userData');
+    dispatch(logoutUser());
+    navigate('/login');
+    toast.success("Logout sucessfully");
+  }
 
   return (
     <SidebarMenu>
@@ -94,7 +108,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleLogout()}>
               <LogOut />
               Log out
             </DropdownMenuItem>

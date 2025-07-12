@@ -50,65 +50,116 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Sales",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Customer",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Sales Invoice",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Receipt",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Purchase",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Purchase Bill",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Supplier",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Payment",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Income & Expenses",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Income",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Expenses",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Ledgers",
+      url: "#",
+      icon: BookOpen,
+      items: [
+        {
+          title: "Create Ledger",
           url: "#",
         },
         {
-          title: "Tutorials",
+          title: "Update Ledger",
           url: "#",
         },
         {
-          title: "Changelog",
+          title: "Display Ledger",
           url: "#",
         },
+      ],
+    },
+    {
+      title: "Reports",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Daybook",
+          url: "#",
+        },
+        {
+          title: "Balance Sheet",
+          url: "#",
+        },
+        {
+          title: "Expenses",
+          url: "#",
+        },
+
+      ],
+    },
+    {
+      title: "Items",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Create Item",
+          url: "#",
+        },
+        {
+          title: "Update Item",
+          url: "#",
+        },
+        {
+          title: "Display Item",
+          url: "#",
+        },
+
       ],
     },
     {
@@ -117,21 +168,14 @@ const data = {
       icon: Settings2,
       items: [
         {
-          title: "General",
+          title: "Update Company",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Delete Company",
           url: "#",
         },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
+
       ],
     },
   ],

@@ -32,7 +32,8 @@ export const LoginPage = () => {
                 dispatch(loginUser({user:res.data.user,token:res.data.token}));
                 localStorage.setItem('userData',JSON.stringify({
                     token: res.data.token,
-                    user: res.data.user
+                    user: res.data.user,
+                    status: "authenticated"
                 }))
                 navigate('/private/homepage');
             }
