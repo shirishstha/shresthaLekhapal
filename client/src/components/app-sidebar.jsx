@@ -48,137 +48,7 @@ const data = {
       plan: "Free",
     },
   ],
-  navMain: [
-    {
-      title: "Sales",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "Customer",
-          url: "#",
-        },
-        {
-          title: "Sales Invoice",
-          url: "#",
-        },
-        {
-          title: "Receipt",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Purchase",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Purchase Bill",
-          url: "#",
-        },
-        {
-          title: "Supplier",
-          url: "#",
-        },
-        {
-          title: "Payment",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Income & Expenses",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Income",
-          url: "#",
-        },
-        {
-          title: "Expenses",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Ledgers",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Create Ledger",
-          url: "#",
-        },
-        {
-          title: "Update Ledger",
-          url: "#",
-        },
-        {
-          title: "Display Ledger",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Reports",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "Daybook",
-          url: "#",
-        },
-        {
-          title: "Balance Sheet",
-          url: "#",
-        },
-        {
-          title: "Expenses",
-          url: "#",
-        },
-
-      ],
-    },
-    {
-      title: "Items",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "Create Item",
-          url: "#",
-        },
-        {
-          title: "Update Item",
-          url: "#",
-        },
-        {
-          title: "Display Item",
-          url: "#",
-        },
-
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "Update Company",
-          url: "#",
-        },
-        {
-          title: "Delete Company",
-          url: "#",
-        },
-
-      ],
-    },
-  ],
+ 
 }
 
 export function AppSidebar({
@@ -190,7 +60,7 @@ export function AppSidebar({
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={props.navMain} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

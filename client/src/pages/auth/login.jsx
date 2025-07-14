@@ -35,7 +35,7 @@ export const LoginPage = () => {
                     user: res.data.user,
                     status: "authenticated"
                 }))
-                navigate('/private/homepage');
+                navigate('/private/selectCmp');
             }
 
         } catch (error) {

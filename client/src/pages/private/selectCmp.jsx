@@ -1,46 +1,71 @@
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { AppSidebar } from "@/components/app-sidebar"
+import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import {
+    AudioWaveform,
+    BookOpen,
+    Bot,
+    Frame,
+    GalleryVerticalEnd,
+    Map,
+    PieChart,
+    Settings2,
+    SquareTerminal,
+} from "lucide-react"
+
 
 export const SelectCmp = () => {
+    const companies = ["PS kirana pasal", , "Team trade pvt.ltd", "GS Khadya Supplier", "Manichood Finance", "Seto bagh pvt.ltd 2075/2076", "CG group and INdustries","cmp","cmp1","cmp2","cmp3","cmp4","cmp6","cmp7","cmp8","cmp9","cmp10"]
+    const sidebarData = {
+        navMain: [
+            {
+            title: "Settings",
+            url: "#",
+            icon: Settings2
+        },
+            {
+            title: "Settings",
+            url: "#",
+            icon: Settings2,
+            items: [
+                {  title: "hello", url: "#"},
+                {  title: "hi", url: "#"}
+             
+            ]}
+    ]
+
+    }
     return (
-        <div className="grid grid-cols-7 h-screen">
-            <div className="bg-muted">
-                <div className="flex flex-col justify-center items-center h-[10%] ">
-                    <p> GS khadya Suppliers</p>
-                    <p className="text-muted-foreground text-sm"> since 2024</p>
-                </div>
-                <hr />
-                <div className=" pt-5 ">
-                    <li className="list-none p-1"><Button variant='ghost' className='font-normal hover:bg-gray-200 w-full justify-start'>Create Company</Button></li>
-                    <li className="list-none p-1"><Button variant='ghost' className='font-normal hover:bg-gray-200 w-full justify-start'>Delete Company</Button></li>
-                    <li className="list-none p-1"><Button variant='ghost' className='font-normal hover:bg-gray-200 w-full justify-start'>Alter Company</Button></li>
-                </div>
+        <div className="grid grid-cols-8 h-screen">
+            <div className="col-span-2">
+                <SidebarProvider>
+                    <AppSidebar navMain={sidebarData.navMain} />
+                    <SidebarInset>
+                        <div className="flex items-center gap-2 px-4 py-4.5">
+                            <SidebarTrigger className="-ml-1" ></SidebarTrigger>
+                        </div>
+                    </SidebarInset>
+
+                </SidebarProvider>
+
+
             </div>
-            <div className="col-span-6 ">
-                <div className="p-10">
-                    <p className="text-3xl font-medium ">Welcome back, owner Shirish</p>
-                    <div className="h-[85vh] flex flex-col items-center justify-center space-y-5">
-                        <h1>Select your Company</h1>
+            <div className="col-span-6">
+                <div className="p-10 ">
+                    <p className="text-3xl  "><span className="text-orange-600">Welcome back,</span> Shirish</p>
+                    <p className="text-gray-500 text-sm">Let's start with choosing a company to work with.</p>
+                    <div className="mt-10 w-[90%]">
 
-                        <ScrollArea className="h-102 w-180 rounded-md border">
-                            <div className="text-xl list-none p-2 space-y-3">
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>PS kirana pasal</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>Team trade pvt.ltd</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>GS Khadya Supplier</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>Manichood Finance</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>Seto bagh pvt.ltd 2075/2076</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>CG group and INdustries</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>ss</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>vd</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>ds</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>fd</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>gs</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>kl</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>kk</Button></li>
-                                <li className="hover:bg-gray-100 hover:rounded"><Button variant='ghost' className='font-normal'>jh</Button></li>
-                            </div>
+                        <Command >
+                            <CommandInput placeholder="Select a company" />
+                            <CommandList className="max-h-[450px] " >
+                                <CommandEmpty>No Company Found.</CommandEmpty>
+                                {companies.map((company) => (
+                                    <CommandItem><Settings2/>{company}</CommandItem>
+                                ))}
+                            </CommandList>
+                        </Command>
 
-                        </ScrollArea>
 
                     </div>
                 </div>

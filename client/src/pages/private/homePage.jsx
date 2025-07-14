@@ -13,11 +13,163 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import {
+  AudioWaveform,
+  BookOpen,
+  Bot,
+  Command,
+  Frame,
+  GalleryVerticalEnd,
+  Map,
+  PieChart,
+  Settings2,
+  SquareTerminal,
+} from "lucide-react"
+
+import { Helmet } from "react-helmet"
 
 export const HomePage = () => {
+  const sidebarData = {
+     navMain: [
+    {
+      title: "Sales",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: true,
+      items: [
+        {
+          title: "Customer",
+          url: "#",
+        },
+        {
+          title: "Sales Invoice",
+          url: "#",
+        },
+        {
+          title: "Receipt",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Purchase",
+      url: "#",
+      icon: Bot,
+      items: [
+        {
+          title: "Purchase Bill",
+          url: "#",
+        },
+        {
+          title: "Supplier",
+          url: "#",
+        },
+        {
+          title: "Payment",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Income & Expenses",
+      url: "#",
+      icon: BookOpen,
+      items: [
+        {
+          title: "Income",
+          url: "#",
+        },
+        {
+          title: "Expenses",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Ledgers",
+      url: "#",
+      icon: BookOpen,
+      items: [
+        {
+          title: "Create Ledger",
+          url: "#",
+        },
+        {
+          title: "Update Ledger",
+          url: "#",
+        },
+        {
+          title: "Display Ledger",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Reports",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Daybook",
+          url: "#",
+        },
+        {
+          title: "Balance Sheet",
+          url: "#",
+        },
+        {
+          title: "Expenses",
+          url: "#",
+        },
+
+      ],
+    },
+    {
+      title: "Items",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Create Item",
+          url: "#",
+        },
+        {
+          title: "Update Item",
+          url: "#",
+        },
+        {
+          title: "Display Item",
+          url: "#",
+        },
+
+      ],
+    },
+    {
+      title: "Settings",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Update Company",
+          url: "#",
+        },
+        {
+          title: "Delete Company",
+          url: "#",
+        },
+
+      ],
+    },
+  ],
+  }
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <Helmet>
+        <title>Lekhapal-Home</title>
+        <meta name="description" content="Shrestha lekhapal Home Page"/>
+        <meta name="keywords" content="lehapal, shrestha lekhapal, homepage, acccounts"/>
+      </Helmet>
+      <AppSidebar navMain={sidebarData.navMain}/>
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
