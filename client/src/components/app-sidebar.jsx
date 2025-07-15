@@ -55,7 +55,7 @@ export function AppSidebar({
   ...props
 }) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" >
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>

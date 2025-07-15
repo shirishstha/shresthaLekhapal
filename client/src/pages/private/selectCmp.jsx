@@ -1,45 +1,73 @@
 import { AppSidebar } from "@/components/app-sidebar"
+import { NavMain } from "@/components/nav-main"
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import axios from "axios"
 import {
-    AudioWaveform,
-    BookOpen,
-    Bot,
-    Frame,
-    GalleryVerticalEnd,
-    Map,
-    PieChart,
     Settings2,
-    SquareTerminal,
 } from "lucide-react"
+import { useEffect, useState } from "react"
+
+import toast from "react-hot-toast"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 
 export const SelectCmp = () => {
-    const companies = ["PS kirana pasal", , "Team trade pvt.ltd", "GS Khadya Supplier", "Manichood Finance", "Seto bagh pvt.ltd 2075/2076", "CG group and INdustries","cmp","cmp1","cmp2","cmp3","cmp4","cmp6","cmp7","cmp8","cmp9","cmp10"]
+    const token = useSelector(state => state.token);
+    const [companies, setCompanies] = useState();
     const sidebarData = {
-        navMain: [
+        NavMain: [
             {
-            title: "Settings",
-            url: "#",
-            icon: Settings2
-        },
+                title: "Create Company",
+                url: "#",
+                icon: Settings2
+            },
             {
-            title: "Settings",
-            url: "#",
-            icon: Settings2,
-            items: [
-                {  title: "hello", url: "#"},
-                {  title: "hi", url: "#"}
-             
-            ]}
-    ]
+                title: "Alter Company",
+                url: "#",
+                icon: Settings2,
+            },
+
+            {
+                title: "Delete Company",
+                url: "#",
+                icon: Settings2,
+            }
+
+        ]
 
     }
+    const navigate = useNavigate();
+    const handleCmpSelect = (company) => {
+        navigate(`/private/${company}`)
+    }
+
+    useEffect(()=>{
+        const fetchAllCompany = async () => {
+            try {
+                const res = await axios.get(`${import.meta.env.VITE_BACKENDAPI}/cmp/getAll-company`,{
+          headers : {
+            Authorization: `Bearer ${token}`
+          }
+        });
+                if(res.data.success){
+                    setCompanies(res.data.companies);
+                }
+                
+            } catch (error) {
+                console.log(error.message);
+                toast.error(error.message);
+            }
+
+        }
+        fetchAllCompany();
+    },[])
     return (
         <div className="grid grid-cols-8 h-screen">
             <div className="col-span-2">
                 <SidebarProvider>
-                    <AppSidebar navMain={sidebarData.navMain} />
+                    <AppSidebar navMain={sidebarData.NavMain} />
                     <SidebarInset>
                         <div className="flex items-center gap-2 px-4 py-4.5">
                             <SidebarTrigger className="-ml-1" ></SidebarTrigger>
@@ -60,8 +88,8 @@ export const SelectCmp = () => {
                             <CommandInput placeholder="Select a company" />
                             <CommandList className="max-h-[450px] " >
                                 <CommandEmpty>No Company Found.</CommandEmpty>
-                                {companies.map((company) => (
-                                    <CommandItem><Settings2/>{company}</CommandItem>
+                                {companies && companies.map((company) => (
+                                    <CommandItem key={company._id} onSelect={()=>handleCmpSelect(company._id)}><Settings2 />{company.name}</CommandItem>
                                 ))}
                             </CommandList>
                         </Command>

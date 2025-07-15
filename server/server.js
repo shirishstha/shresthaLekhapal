@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 
 //internal modules
 const authRouter = require('./routes/authRoute');
+const cmpRouter = require('./routes/cmpRoute');
 const connectDB = require('./helpers/db');
 
 
@@ -23,6 +24,7 @@ app.use(express.json());
 //routes
 app.use('/api/shresthaLekhapal/landing',(req,res)=> res.send('Your backend loaded success enjoy'));
 app.use('/api/shresthaLekhapal/auth',authRouter);
+app.use('/api/shresthaLekhapal/cmp',cmpRouter);
 
 
 //listening app
