@@ -17,11 +17,12 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import { Link } from "react-router-dom";
 
 export function NavMain({ items }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroup >
+      <SidebarGroupLabel >Operations</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const isNested = Array.isArray(item.items) && item.items.length > 0;
@@ -33,22 +34,22 @@ export function NavMain({ items }) {
               defaultOpen={item.isActive}
               className="group/collapsible"
             >
-              <SidebarMenuItem>
+              <SidebarMenuItem className='py-1'>
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton tooltip={item.title}>
-                    {item.icon && <item.icon />}
+                    {item.icon && <item.icon className="text-orange-600"/>}
                     <span>{item.title}</span>
                     <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                   </SidebarMenuButton>
                 </CollapsibleTrigger>
-                <CollapsibleContent>
+                <CollapsibleContent >
                   <SidebarMenuSub>
                     {item.items.map((subItem) => (
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton asChild>
-                          <a href={subItem.url}>
+                          <Link to={subItem.url}>
                             <span>{subItem.title}</span>
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -57,12 +58,12 @@ export function NavMain({ items }) {
               </SidebarMenuItem>
             </Collapsible>
           ) : (
-            <SidebarMenuItem key={item.title}>
+            <SidebarMenuItem key={item.title} >
               <SidebarMenuButton asChild tooltip={item.title}>
-                <a href={item.url} className="flex items-center gap-2 w-full">
-                  {item.icon && <item.icon />}
+                <Link to={item.url} className="flex items-center gap-2 w-full p-6">
+                  {item.icon && <item.icon className="text-orange-600"/>}
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           );

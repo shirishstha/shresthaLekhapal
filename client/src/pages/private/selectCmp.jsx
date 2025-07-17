@@ -4,7 +4,11 @@ import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from "@
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import axios from "axios"
 import {
+    Building,
+    Pencil,
+    Plus,
     Settings2,
+    Trash,
 } from "lucide-react"
 import { useEffect, useState } from "react"
 
@@ -20,19 +24,19 @@ export const SelectCmp = () => {
         NavMain: [
             {
                 title: "Create Company",
-                url: "#",
-                icon: Settings2
+                url: "/private/createcmp",
+                icon: Plus
             },
             {
                 title: "Alter Company",
                 url: "#",
-                icon: Settings2,
+                icon: Pencil,
             },
 
             {
                 title: "Delete Company",
                 url: "#",
-                icon: Settings2,
+                icon: Trash,
             }
 
         ]
@@ -64,8 +68,8 @@ export const SelectCmp = () => {
         fetchAllCompany();
     },[])
     return (
-        <div className="grid grid-cols-8 h-screen">
-            <div className="col-span-2">
+        <div className="w-full flex h-screen">
+            <div >
                 <SidebarProvider>
                     <AppSidebar navMain={sidebarData.NavMain} />
                     <SidebarInset>
@@ -78,28 +82,26 @@ export const SelectCmp = () => {
 
 
             </div>
-            <div className="col-span-6">
-                <div className="p-10 ">
-                    <p className="text-3xl  "><span className="text-orange-600">Welcome back,</span> Shirish</p>
+            <div className="w-[100%] p-10 pl-20">
+                    <p className="text-3xl font-medium ">Welcome back, <span className=" text-orange-600">Shirish</span> </p>
                     <p className="text-gray-500 text-sm">Let's start with choosing a company to work with.</p>
-                    <div className="mt-10 w-[90%]">
+                    <div className="mt-10 w-[90%] shadow-xl rounded-lg p-8">
+                        <p className="text-sm">Select Company</p>
 
-                        <Command >
-                            <CommandInput placeholder="Select a company" />
+                        <Command  >
+                            <CommandInput  placeholder="Search for a company" />
                             <CommandList className="max-h-[450px] " >
                                 <CommandEmpty>No Company Found.</CommandEmpty>
                                 {companies && companies.map((company) => (
-                                    <CommandItem key={company._id} onSelect={()=>handleCmpSelect(company._id)}><Settings2 />{company.name}</CommandItem>
+                                    <CommandItem key={company._id} onSelect={()=>handleCmpSelect(company._id)}><Building className="text-orange-600"/>{company.name}</CommandItem>
                                 ))}
                             </CommandList>
                         </Command>
 
 
                     </div>
-                </div>
-                <div>
-
-                </div>
+               
+               
             </div>
 
         </div>

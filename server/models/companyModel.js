@@ -16,6 +16,11 @@ const cmpSchema = mongoose.Schema({
     },
     address: {
         type: String,
+        required: true
+    },
+    financialYear:{
+        type: Date,
+        required: true
     }
 
 },{timestamps:true});

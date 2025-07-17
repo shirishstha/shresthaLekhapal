@@ -56,13 +56,13 @@ export function AppSidebar({
 }) {
   return (
     <Sidebar collapsible="icon" >
-      <SidebarHeader>
+      <SidebarHeader >
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent >
         <NavMain items={props.navMain} />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter >
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />

@@ -7,7 +7,8 @@ const initialState = {
         email: "",
         role: "",
         name: "",
-        contact: ""
+        contact: "",
+        _id: null
     },
     token: userData.token || "",
     status: userData.status || "unauthenticated"

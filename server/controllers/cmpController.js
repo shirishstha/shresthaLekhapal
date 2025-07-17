@@ -3,17 +3,16 @@ const cmpModel = require("../models/companyModel");
 const createCompanyController = async (req, res) => {
     try {
         //access and validate for empty data
-        const {name, createdBy, currency, address} = req.body;
-        console.log(name, createdBy,currency,address);
-        if(!name || !createdBy || !currency){
+        const {name, createdBy, currency, address, date} = req.body;
+        if(!name || !createdBy || !currency || !address || !date){
             return res.status(400).send({
                 success : false,
-                message: "Name, Createdby and currency need to be filled ."
+                message: "All fields need to be filled ."
             })
         }
 
         //send data to the database server for the record of new company 
-        const cmp = await new cmpModel({name, createdBy, currency, address}).save();
+        const cmp = await new cmpModel({name, createdBy, currency, address, financialYear:date}).save();
         if(!cmp){
            return res.status(500).send({
                 success: false,
